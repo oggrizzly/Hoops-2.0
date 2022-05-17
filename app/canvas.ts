@@ -5,6 +5,7 @@ let app = document.querySelector('#app');
 let canvas = document.createElement('canvas');
 app.appendChild(canvas);
 let score = 0;
+let width = 500;
 
 canvas.width = 500;
 canvas.height = 500;
@@ -80,6 +81,7 @@ function animateBall(timestamp: number = 0) {
   drawBall();
   drawHoop();
   checkForHits()
+  checkForEdge ()
 
   requestAnimationFrame(animateBall)
 }
@@ -113,8 +115,17 @@ function drawHoop() {
 
 animateBall();
 
+function checkForEdge () {
+  if (hoop.x < 0) {
+    (hoop.x = width)
+  }
+  if (hoop.x > width) {
+    (hoop.x = 0)
+  }
+}
 function checkForHits() {
   {
+    
     if (Math.abs(ball.x - hoop.x) < 20) {
       if (Math.abs(ball.y - hoop.y) < 20) {
         score += 1;
@@ -127,7 +138,6 @@ function checkForHits() {
     }
   }
 }
-// make it so hoop translates to other side when it hits canvas border
 //add speed cap
 //add way to lose
 //make look nice
