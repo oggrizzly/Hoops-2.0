@@ -1,4 +1,4 @@
-import { ballImage } from './image';
+import { ballImage, piskleImage } from './image';
 import { hoopImage } from './image';
 let fallSpeed = 75;
 let app = document.querySelector('#app');
@@ -81,7 +81,8 @@ function animateBall(timestamp: number = 0) {
   drawBall();
   drawHoop();
   checkForHits()
-  checkForEdge ()
+  checkForEdge()
+
 
   requestAnimationFrame(animateBall)
 }
@@ -93,9 +94,10 @@ ballImage.addEventListener(
 
 
 export let hoop = {
+  frame: 0,
   x: 250,
   y: 450,
-  image: hoopImage,
+  image: piskleImage,
 }
 
 
@@ -107,15 +109,17 @@ function drawHoop() {
   ctx.rotate(hoop.angle);
   ctx.drawImage(
     hoop.image,
-    -25, -25,
-    50, 50
+    hoop.frame*32, 0, //source offset
+    32, 32, //source size
+    -25, -25, //destination offset
+    75, 75 //desitnation size
   )
 }
 
 
 animateBall();
 
-function checkForEdge () {
+function checkForEdge() {
   if (hoop.x < 0) {
     (hoop.x = width)
   }
@@ -123,9 +127,11 @@ function checkForEdge () {
     (hoop.x = 0)
   }
 }
+
+
 function checkForHits() {
   {
-    
+
     if (Math.abs(ball.x - hoop.x) < 20) {
       if (Math.abs(ball.y - hoop.y) < 20) {
         score += 1;

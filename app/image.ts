@@ -15,3 +15,12 @@ assetDiv.style.display = 'none';
 export let hoopImage = document.createElement ('img');
 hoopImage.src = hoopUrl ;
 assetDiv.appendChild(hoopImage);
+
+import piskleUrl from './assets/piskle.png'
+let assetDiv3 : HTMLDivElement = document.querySelector('#assets');
+
+assetDiv3.style.display = 'none';
+
+export let piskleImage = document.createElement ('img');
+piskleImage.src = piskleUrl ;
+assetDiv3.appendChild(hoopImage);
