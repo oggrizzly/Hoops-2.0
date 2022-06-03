@@ -134,7 +134,7 @@ function checkForEdge() {
 function checkForHits() {
   {
 
-    if (Math.abs(ball.x - hoop.x) < 20) {
+    if (Math.abs(ball.x - hoop.x) < 30) {
       if (Math.abs(ball.y - hoop.y) < 20) {
         if (endStep ==0)
         swishSequence()
@@ -155,7 +155,7 @@ function swishSequence() {
   if (endStep < 7) {
     // run ourselves again in a moment
     console.log("Step", endStep);
-    setTimeout(swishSequence, 1000 / 16);
+    setTimeout(swishSequence, 1000/16);
   } else {
   hoop.frame = 0
     endStep = 0
