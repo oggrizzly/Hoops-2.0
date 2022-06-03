@@ -155,13 +155,14 @@ function swishSequence() {
   if (endStep < 7) {
     // run ourselves again in a moment
     console.log("Step", endStep);
-    setTimeout(swishSequence, 1000/16);
+    setTimeout(swishSequence, 7500/fallSpeed);
   } else {
   hoop.frame = 0
     endStep = 0
       score += 1;
         console.log("Hit");
         fallSpeed += 10
+    if (fallSpeed > 200) {fallSpeed = 200}
         ball.y = 0;
 
         ball.x = Math.random() * canvas.width
