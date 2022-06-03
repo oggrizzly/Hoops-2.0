@@ -51,6 +51,7 @@ function updateBall(elapsed: number) {
   );
   if (ball.y > canvas.height + 50) {
     ball.y = 0;
+    ball.x = Math.random() * canvas.width;
   }
   if (ball.x < 0) {
     ball.x = canvas.width - 25;
@@ -84,6 +85,7 @@ function animateBall(timestamp: number = 0) {
   checkForEdge()
 
 
+
   requestAnimationFrame(animateBall)
 }
 
@@ -109,7 +111,7 @@ function drawHoop() {
   ctx.rotate(hoop.angle);
   ctx.drawImage(
     hoop.image,
-    hoop.frame*32, 0, //source offset
+    hoop.frame * 32, 0, //source offset
     32, 32, //source size
     -25, -25, //destination offset
     75, 75 //desitnation size
@@ -134,12 +136,10 @@ function checkForHits() {
 
     if (Math.abs(ball.x - hoop.x) < 20) {
       if (Math.abs(ball.y - hoop.y) < 20) {
-        score += 1;
-        console.log("Hit");
-        fallSpeed += 10
-        ball.y = 0;
+        if (endStep ==0)
+        swishSequence()
 
-        ball.x = Math.random() * canvas.width
+        
       }
     }
   }
@@ -147,3 +147,28 @@ function checkForHits() {
 //add speed cap
 //add way to lose
 //make look nice
+
+function swishSequence() {
+  // update hoop image
+  hoop.frame += 1
+  endStep += 1;
+  if (endStep < 7) {
+    // run ourselves again in a moment
+    console.log("Step", endStep);
+    setTimeout(swishSequence, 1000 / 16);
+  } else {
+  hoop.frame = 0
+    endStep = 0
+      score += 1;
+        console.log("Hit");
+        fallSpeed += 10
+        ball.y = 0;
+
+        ball.x = Math.random() * canvas.width
+
+    // finish up
+  }
+}
+
+let endStep = 0;
+
