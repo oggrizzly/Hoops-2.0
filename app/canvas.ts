@@ -162,7 +162,7 @@ function swishSequence() {
       score += 1;
         console.log("Hit");
         fallSpeed += 10
-    if (fallSpeed > 200) {fallSpeed = 200}
+    if (fallSpeed > 300) {fallSpeed = 300}
         ball.y = 0;
 
         ball.x = Math.random() * canvas.width
