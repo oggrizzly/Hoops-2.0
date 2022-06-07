@@ -52,6 +52,7 @@ function updateBall(elapsed: number) {
   if (ball.y > canvas.height + 50) {
     ball.y = 0;
     if (scored == false) {score = 0}
+    if (score == 0) {fallSpeed = 75}
     ball.x = Math.random() * canvas.width;
     scored = false
   }
