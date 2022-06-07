@@ -51,7 +51,9 @@ function updateBall(elapsed: number) {
   );
   if (ball.y > canvas.height + 50) {
     ball.y = 0;
+    if (scored == false) {score = 0}
     ball.x = Math.random() * canvas.width;
+    scored = false
   }
   if (ball.x < 0) {
     ball.x = canvas.width - 25;
@@ -150,6 +152,7 @@ function checkForHits() {
 
 function swishSequence() {
   // update hoop image
+  scored = true
   hoop.frame += 1
   endStep += 1;
   if (endStep < 7) {
@@ -163,13 +166,13 @@ function swishSequence() {
         console.log("Hit");
         fallSpeed += 10
     if (fallSpeed > 300) {fallSpeed = 300}
-        ball.y = 0;
-
-        ball.x = Math.random() * canvas.width
+       
 
     // finish up
   }
 }
 
 let endStep = 0;
+
+let scored = false
 
