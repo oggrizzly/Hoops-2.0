@@ -9,8 +9,8 @@ let width = 500;
 
 canvas.width = 500;
 canvas.height = 500;
-canvas.style.width = '90vw';
-canvas.style.height = '90vw';
+canvas.style.width = '90vh';
+canvas.style.height = '90vh';
 canvas.style.border = '3px solid black'
 canvas.style.backgroundColor = 'black'
 
